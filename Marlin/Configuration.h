@@ -2353,7 +2353,7 @@
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
 #define EEPROM_SETTINGS     // Persistent storage with M500 and M501  // Ender Configs
-//#define DISABLE_M503        // Saves ~2700 bytes of flash. Disable for release!  // Luro02 Suggested Memory Savings
+//#define DISABLE_M503        // Saves ~2700 bytes of flash. Disable for release!
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save flash.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
@@ -2390,14 +2390,14 @@
 //
 // Preheat Constants - Up to 10 are supported without changes
 //
-#define PREHEAT_1_LABEL       "Preheat Bed"
-#define PREHEAT_1_TEMP_HOTEND 0
+#define PREHEAT_1_LABEL       "PLA"
+#define PREHEAT_1_TEMP_HOTEND 200
 #define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
-#define PREHEAT_2_LABEL       "PLA"
-#define PREHEAT_2_TEMP_HOTEND 200
+#define PREHEAT_2_LABEL       "TPU"
+#define PREHEAT_2_TEMP_HOTEND 235
 #define PREHEAT_2_TEMP_BED     60
 #define PREHEAT_2_TEMP_CHAMBER 35
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
@@ -2407,8 +2407,8 @@
 #define PREHEAT_3_TEMP_BED     90
 #define PREHEAT_3_FAN_SPEED   0
 
-#define PREHEAT_4_LABEL       "TPU"
-#define PREHEAT_4_TEMP_HOTEND 235
+#define PREHEAT_4_LABEL       "Bed"
+#define PREHEAT_4_TEMP_HOTEND 0
 #define PREHEAT_4_TEMP_BED     60
 #define PREHEAT_4_FAN_SPEED   0
 
@@ -3407,6 +3407,7 @@
 //
 //#define DWIN_CREALITY_LCD           // Creality UI
 #define DWIN_LCD_PROUI              // Pro UI by MRiscoC
+#define DACAI_DISPLAY
 #define USE_STOCK_DWIN_SET
 
 // Professional firmware features:
