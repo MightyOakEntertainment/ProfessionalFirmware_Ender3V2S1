@@ -64,14 +64,14 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Dracrius, Ender 3 S1 F4)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Dracrius, Ender 3 Pro)" // Who made the changes.
 #define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 // @section machine
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_CREALITY_V24S1_301F4  // Ender 3S1 v301F4
+  #define MOTHERBOARD BOARD_BTT_SKR_MINI_E3_V2_0  // BTT SKR MINI E3 V2
 #endif
 
 /**
@@ -82,7 +82,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 1  // Ender Configs
+#define SERIAL_PORT 2
 #define NO_AUTO_ASSIGN_WARNING  // Disable serial warnings
 
 /**
@@ -96,9 +96,9 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 250000  // MRiscoC increase serial performace
+#define BAUDRATE 115200  // MRiscoC increase serial performace  // 115K for SKR MINI
 
-//#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate  // MRiscoC Enables change the baudrate  // Luro02 Suggested Memory Savings - Not sure how much this saves
+#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate  // MRiscoC Enables change the baudrate
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
@@ -120,7 +120,7 @@
 //#define BLUETOOTH
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "M.O.E. - S1"
+#define CUSTOM_MACHINE_NAME "Monolith"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -143,9 +143,9 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TMC2208_STANDALONE  // Ender Configs
-#define Y_DRIVER_TYPE  TMC2208_STANDALONE  // Ender Configs
-#define Z_DRIVER_TYPE  TMC2208_STANDALONE  // Ender Configs
+#define X_DRIVER_TYPE  TMC2209
+#define Y_DRIVER_TYPE  TMC2209
+#define Z_DRIVER_TYPE  TMC2209
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
@@ -157,7 +157,7 @@
 //#define U_DRIVER_TYPE  A4988
 //#define V_DRIVER_TYPE  A4988
 //#define W_DRIVER_TYPE  A4988
-#define E0_DRIVER_TYPE TMC2208_STANDALONE  // Ender Configs
+#define E0_DRIVER_TYPE TMC2209
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -548,7 +548,7 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 13  // 100k Hisens 3950 1% up to 300 Celcius
+#define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -618,7 +618,7 @@
 
 // Below this temperature the heater will be switched off
 // because it probably indicates a broken thermistor wire.
-#define HEATER_0_MINTEMP   5  // Ender Configs  // 100k Hisens 3950 1% up to 300 Celcius
+#define HEATER_0_MINTEMP   5  // Ender Configs
 #define HEATER_1_MINTEMP   5
 #define HEATER_2_MINTEMP   5
 #define HEATER_3_MINTEMP   5
@@ -632,7 +632,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 300  // 100k Hisens 3950 1% up to 300 Celcius
+#define HEATER_0_MAXTEMP 260  // PTFE Tube Safe Guard
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
@@ -640,7 +640,7 @@
 #define HEATER_5_MAXTEMP 275
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
-#define BED_MAXTEMP      120  // Ender 3 S1 Configs
+#define BED_MAXTEMP      90  // Ender Configs
 #define CHAMBER_MAXTEMP  60
 
 /**
@@ -684,9 +684,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  28.3
-    #define DEFAULT_Ki   3.08
-    #define DEFAULT_Kd 65.08
+    #define DEFAULT_Kp  19.2
+    #define DEFAULT_Ki   1.35
+    #define DEFAULT_Kd 68.49
   #endif
 #else
   #define BANG_MAX 255    // Limit hotend current while in bang-bang mode; 255=full current
@@ -774,9 +774,9 @@
 
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 168.34
-  #define DEFAULT_bedKi 31.88
-  #define DEFAULT_bedKd 592.56
+  #define DEFAULT_bedKp 462.10
+  #define DEFAULT_bedKi  85.47
+  #define DEFAULT_bedKd 624.59
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #else
@@ -1119,12 +1119,12 @@
 // @section endstops
 
 // Enable pullup for all endstops to prevent a floating state
-//#define ENDSTOPPULLUPS  // Board v301 Configs
+#define ENDSTOPPULLUPS
 #if DISABLED(ENDSTOPPULLUPS)
   // Disable ENDSTOPPULLUPS to set pullups individually
   //#define ENDSTOPPULLUP_XMIN
   //#define ENDSTOPPULLUP_YMIN
-  #define ENDSTOPPULLUP_ZMIN  // Board v301 Configs
+  //#define ENDSTOPPULLUP_ZMIN
   //#define ENDSTOPPULLUP_IMIN
   //#define ENDSTOPPULLUP_JMIN
   //#define ENDSTOPPULLUP_KMIN
@@ -1140,7 +1140,7 @@
   //#define ENDSTOPPULLUP_UMAX
   //#define ENDSTOPPULLUP_VMAX
   //#define ENDSTOPPULLUP_WMAX
-  #define ENDSTOPPULLUP_ZMIN_PROBE  // Board v301 Configs
+  //#define ENDSTOPPULLUP_ZMIN_PROBE
 #endif
 
 // Enable pulldown for all endstops to prevent a floating state
@@ -1172,11 +1172,11 @@
  * Endstop "Hit" State
  * Set to the state (HIGH or LOW) that applies to each endstop.
  */
-#define X_MIN_ENDSTOP_HIT_STATE LOW  // Board v301 Configs
+#define X_MIN_ENDSTOP_HIT_STATE HIGH
 #define X_MAX_ENDSTOP_HIT_STATE HIGH
-#define Y_MIN_ENDSTOP_HIT_STATE LOW  // Board v301 Configs
+#define Y_MIN_ENDSTOP_HIT_STATE HIGH
 #define Y_MAX_ENDSTOP_HIT_STATE HIGH
-#define Z_MIN_ENDSTOP_HIT_STATE HIGH  // Board v301 Configs
+#define Z_MIN_ENDSTOP_HIT_STATE HIGH
 #define Z_MAX_ENDSTOP_HIT_STATE HIGH
 #define I_MIN_ENDSTOP_HIT_STATE HIGH
 #define I_MAX_ENDSTOP_HIT_STATE HIGH
@@ -1238,7 +1238,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 424.9 }  // MRiscoC Tune (Ender Configs - 80, 80, 400, 430)
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }  // Ender Configs
 
 #define LIMITED_MAX_STEPS_EDITING
 #if ENABLED(LIMITED_MAX_STEPS_EDITING)
@@ -1250,7 +1250,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 10, 45 }
+#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 45 }  // Ender Configs
 
 #define DEFAULT_FEEDRATE_MM_M (50*60)
 
@@ -1294,8 +1294,8 @@
  */
 //#define CLASSIC_JERK  // Ender Configs
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 5.0  // MRiscoC Tune (Ender Configs 10)
-  #define DEFAULT_YJERK 5.0  // MRiscoC Tune (Ender Configs 10)
+  #define DEFAULT_XJERK 10.0  // Ender Configs
+  #define DEFAULT_YJERK 10.0  // Ender Configs
   #define DEFAULT_ZJERK  0.3  // Ender Configs
   //#define DEFAULT_IJERK  0.3
   //#define DEFAULT_JJERK  0.3
@@ -1575,7 +1575,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -47.32, 0, -1.02 }  // Mighty Oak Minimal Z Offset With HeroMe Duct
+#define NOZZLE_TO_PROBE_OFFSET { -40, 6, -1.35 }  // HeroMe BLTouch offset
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1743,9 +1743,9 @@
 // @section motion
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
-#define INVERT_Y_DIR false
-#define INVERT_Z_DIR true
+#define INVERT_X_DIR true
+#define INVERT_Y_DIR true
+#define INVERT_Z_DIR false
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
@@ -1756,7 +1756,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1815,16 +1815,16 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 235  // True Bed Size (MRiscoC Max usable bed size 220)
-#define Y_BED_SIZE 231  // True Bed Size 235, Y axis movement makes useable 231 (MRiscoC Max usable bed size)
+#define X_BED_SIZE 235  // MRiscoC Max usable bed size
+#define Y_BED_SIZE 235  // MRiscoC Max usable bed size
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS -3.5  // MOE S1 measured physical limit
-#define Y_MIN_POS -2  // MRiscoC Stock physical limit
+#define X_MIN_POS 0  // MRiscoC Stock physical limit
+#define Y_MIN_POS 0  // MRiscoC Stock physical limit
 #define Z_MIN_POS 0
-#define X_MAX_POS 238.5  // MRiscoC Stock physical limit
-#define Y_MAX_POS 233  // MRiscoC Stock physical limit
-#define Z_MAX_POS 275  // Ender 3 S1 Configs
+#define X_MAX_POS 235  // MRiscoC Stock physical limit
+#define Y_MAX_POS 235  // MRiscoC Stock physical limit
+#define Z_MAX_POS 240  // Ender 3 Cable Chain Limit
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
 //#define J_MIN_POS 0
@@ -1897,9 +1897,9 @@
   #define FIL_RUNOUT_ENABLED_DEFAULT false // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
 
-  #define FIL_RUNOUT_STATE     HIGH        // Pin state indicating that filament is NOT present.  // Board v301 Configs
-  //#define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.  // Board v301 Configs
-  #define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.  // Board v301 Configs
+  #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.
+  #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
+  //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
   //#define WATCH_ALL_RUNOUT_SENSORS      // Execute runout script on any triggering sensor, not only for the active extruder.
                                           // This is automatically enabled for MIXING_EXTRUDERs.
 
@@ -2128,10 +2128,10 @@
     // Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    //#define ABL_BILINEAR_SUBDIVISION  // Original Ender 3 S1 Configs set this to Enable
+    //#define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
-      #define BILINEAR_SUBDIVISIONS 5  // Ender 3 S1 Configs
+      #define BILINEAR_SUBDIVISIONS 3
     #endif
 
   #endif
@@ -2144,7 +2144,7 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed  // Max probing Area (MRiscoC Center mesh 38)
+  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed  // MRiscoC Center mesh
   #define GRID_MAX_POINTS_X 5      // Don't use more than 15 points per axis, implementation limited.  // MRiscoC Customizable by menu
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -2186,7 +2186,7 @@
   //=================================== Mesh ==================================
   //===========================================================================
 
-  #define MESH_INSET 1          // Set Mesh bounds as an inset region of the bed  // Max probing Area (MRiscoC Center mesh 38)
+  #define MESH_INSET 1          // Set Mesh bounds as an inset region of the bed  // MRiscoC Center mesh
   #define GRID_MAX_POINTS_X 5    // Don't use more than 7 points per axis, implementation limited.  // MRiscoC Customizable by menu
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -2198,7 +2198,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-//#define LCD_BED_LEVELING
+#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -2210,7 +2210,7 @@
 #define LCD_BED_TRAMMING  // ProUI has a bed tramming menu
 
 #if ENABLED(LCD_BED_TRAMMING)
-  //#define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets  // ProUI use mesh insets for bed tramming
+  #define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets  // ProUI use mesh insets for bed tramming
   #define BED_TRAMMING_HEIGHT      0.0        // (mm) Z height of nozzle at tramming points
   #define BED_TRAMMING_Z_HOP       5.0        // (mm) Z height of nozzle between tramming points
   //#define BED_TRAMMING_INCLUDE_CENTER       // Move to the center after the last corner
@@ -2559,7 +2559,7 @@
  *
  * View the current statistics with M78.
  */
-//#define PRINTCOUNTER  // MRiscoC Enable Print Statistics  // Luro02 Suggested Memory Savings
+#define PRINTCOUNTER  // MRiscoC Enable Print Statistics
 #if ENABLED(PRINTCOUNTER)
   #define PRINTCOUNTER_SAVE_INTERVAL 60 // (minutes) EEPROM save interval during print. A value of 0 will save stats at end of print.
 #endif
@@ -2733,7 +2733,7 @@
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
 //#define INDIVIDUAL_AXIS_HOMING_MENU
-//#define INDIVIDUAL_AXIS_HOMING_SUBMENU  // Luro02 Suggested Memory Savings
+#define INDIVIDUAL_AXIS_HOMING_SUBMENU
 
 //
 // SPEAKER/BUZZER
@@ -3047,7 +3047,10 @@
 //
 // Connect to EXP1 on RAMPS and compatible boards.
 //
-//#define CR10_STOCKDISPLAY
+#define CR10_STOCKDISPLAY
+#if ENABLED(CR10_STOCKDISPLAY)
+  #define RET6_12864_LCD  // Specific to the SoC (can either be RET / VET)
+#endif
 
 //
 // Ender-2 OEM display, a variant of the MKS_MINI_12864
@@ -3406,8 +3409,7 @@
 // Ender-3 v2 OEM display. A DWIN display with Rotary Encoder.
 //
 //#define DWIN_CREALITY_LCD           // Creality UI
-#define DWIN_LCD_PROUI              // Pro UI by MRiscoC
-#define DACAI_DISPLAY
+//#define DWIN_LCD_PROUI              // Pro UI by MRiscoC
 #define USE_STOCK_DWIN_SET
 
 // Professional firmware features:
@@ -3430,7 +3432,7 @@
     #define HAS_GCODE_PREVIEW 1
     #define HAS_TOOLBAR 1
   #endif
-  //#define HAS_CUSTOM_COLORS 1  // Luro02 Suggested Memory Savings
+  #define HAS_CUSTOM_COLORS 1
   #define HAS_CUSTOM_COLORS_MENU 1
   #define HAS_PLOT 1
   #define HAS_ESDIAG 1
@@ -3440,7 +3442,7 @@
   #define SHOW_REAL_POS        // Display the real axes position in cartesian printers
   //#define ACTIVATE_MESH_ITEM   // Allows temporary enabling of mesh leveling
   #define RUNOUT_TUNE_ITEM     // Allows enable/disable the run out filament sensor while printing
-  //#define PLR_TUNE_ITEM        // Allows enable/disable the power lost recovery while printing  //   // Enable only if Power loss recovery is enabled
+  #define PLR_TUNE_ITEM        // Allows enable/disable the power lost recovery while printing
   #define JD_TUNE_ITEM         // Enable only if Juntion Deviation is enabled
   #define ADVK_TUNE_ITEM       // Enable only if Linear Advance is enabled
   //#define MEDIASORT_MENU_ITEM  // Allows enable/disable file list sorting
@@ -3592,7 +3594,7 @@
 #if ENABLED(NEOPIXEL_LED)
   #define NEOPIXEL_TYPE          NEO_GRBW // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.
                                           // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
-  #define NEOPIXEL_PIN                PA13 // LED driving pin
+  #define NEOPIXEL_PIN                PA8 // LED driving pin
   //#define NEOPIXEL2_TYPE  NEOPIXEL_TYPE
   //#define NEOPIXEL2_PIN               5
   #define NEOPIXEL_PIXELS              30 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
