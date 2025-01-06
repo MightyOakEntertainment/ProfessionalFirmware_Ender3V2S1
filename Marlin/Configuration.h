@@ -1575,7 +1575,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -47.32, -1.52, -1.02 }  // Mighty Oak Minimal Z Offset With HeroMe Duct
+#define NOZZLE_TO_PROBE_OFFSET { -47.32, 0, -1.02 }  // Mighty Oak Minimal Z Offset With HeroMe Duct
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -2051,7 +2051,7 @@
  * leveling immediately after G28.
  */
 //#define RESTORE_LEVELING_AFTER_G28
-//#define ENABLE_LEVELING_AFTER_G28
+#define ENABLE_LEVELING_AFTER_G28
 
 /**
  * Auto-leveling needs preheating
